@@ -1,0 +1,49 @@
+<h1 mat-dialog-title>{{ isEdit ? "Edit Employee" : "Add Employee" }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="employeeForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Employee Name</mat-label>
+      <input
+        formControlName="employeeName"
+        matInput
+        placeholder="Employee Name"
+      />
+      <mat-icon matSuffix color="primary">person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="Product Designer">Product Designer</mat-option>
+        <mat-option value="Flutter Developer">Flutter Developer</mat-option>
+        <mat-option value="QA Tester">QA Tester</mat-option>
+        <mat-option value="Product Owner">Product Owner</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter date</mat-label>
+      <mat-date-range-input formGroupName="date" [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" placeholder="Start date">
+        <input matEndDate formControlName="endDate" placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    
+      <mat-error *ngIf="employeeForm.get('date.startDate')?.hasError('required')">Invalid start date</mat-error>
+      <mat-error *ngIf="employeeForm.get('date.endDate')?.hasError('required')">Invalid end date</mat-error>
+    </mat-form-field>
+    
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-button mat-dialog-close color="warn">Cancel</button>
+      <button
+        mat-button
+        color="primary"
+        (click)="addEmployee()"
+        [disabled]="!employeeForm.valid"
+      >
+        {{ isEdit ? "Update" : "Save" }}
+      </button>
+    </div>
+  </form>
+</div>

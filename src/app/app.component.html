@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Employee List</span>
+  <span class="example-spacer"></span>
+  <div class="example-button-container">
+    <button
+      mat-mini-fab
+      color="accent"
+      aria-label="Example icon button with a plus one icon"
+      matTooltip="Add Employee"
+      (click)="openDialog()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<employee-list></employee-list>
